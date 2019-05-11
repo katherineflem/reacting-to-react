@@ -20,52 +20,55 @@ class App extends Component {
         super()
         this.state = {
             name: "Katherine",
-            text: "Welcome to React",
-            placeholder: "Name",
-            hasLoaded: false
+            text: "Welcome to React", 
+            inputVal: "Name...", //what is being typed
+            hasLoaded: false //start as false and toggle when mounted to true
         }
     }
 
-    //toggle the hasloaded property so change the state when clicked
+    //function to toggle the hasloaded property so change the state when clicked
     handleClick = () => {
         this.setState({ hasLoaded: !this.state.hasLoaded })
         console.log(this.state.hasLoaded)
 
     }
-
-    componentDidMount=()=>{
-        this.setState({hasLoaded: true})
+    //set initial information in here:
+    componentDidMount = () => {
+        this.setState({ hasLoaded: true })
     }
 
+//this part renders to the screen:
     render() {
         //need if statement about hasLoaded
         if (this.state.hasLoaded === true) {
             return (
-                <React.Fragment>
+                <>
                     <h1> Hello {this.state.name}, {this.state.text}</h1>
                     <input
-                        placeholder={this.state.placeholder}
-                        onChange={(event) => (this.setState({ placeholder: event.target.value }))}>
+                        value={this.state.inputVal}
+                        onChange={(event) => (this.setState({ inputVal: event.target.value }))}> 
                     </input>
                     <br></br>
+                    <h2>{this.state.inputVal}</h2>
                     <button
                         onClick={this.handleClick}
                     > Click Me!</button>
-                </React.Fragment>
+                </>
             );
         } else {
             return (
                 <>
                     <h1>Loading...</h1>;
                     <button
-                        onClick={this.handleClick}
+                        onClick={this.handleClick}//calling the handleclick function so it toggles hasloaded to true/false depening on if content has loaded in the dom
                     >Click to load!</button>
                 </>
             )
         }
     }
-    buttonClick() {
-        this.setState()
-    }
 }
 export default App
+
+//onChange
+//onClick
+//this.state
